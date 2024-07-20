@@ -26,5 +26,6 @@ void rev_rot_it(t_stack **stack, char c);
 void sort_three(t_stack **a, t_stack **b);
 void sort_four(t_stack **a, t_stack **b);
 void sort_five(t_stack **a, t_stack **b);
-void sort(t_stack **a, t_stack **b);
+void sort_chankitos(t_stack **a, t_stack **b);
+void print_stack(t_stack *test);
 #endif

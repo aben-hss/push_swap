@@ -27,49 +27,6 @@ int	cs_atoi(char *str, char **free_it)
 	return ((int)ret * sign);
 }
 
-int check(char *str)
-{
-    int len, i;
-
-    if (!str)
-        return (0);
-    i = 0;
-    len = ft_strlen(str);
-    while(i < len)
-    {
-        if (ft_isdigit(str[i]) || str[i] == '+' || str[i] == '-')
-            i++;
-        else
-            return 0;
-    }
-    return (1);
-}
-
-char *get_chars(char **av)
-{
-    int i = 0;
-    char *temp;
-
-    temp = NULL;
-    while(av[i])
-    {
-        if(!*av[i] || (*av[i] >= 9 && *av[i] <= 13))
-        {
-            free(temp);
-            ft_putstr_fd("Error\n",2);
-            exit(1);
-        }
-        temp = ft_strjoin(temp," ");
-        temp = ft_strjoin(temp,av[i++]);
-    }
-    return(temp);
-}
-void check_overflow(char **chars)
-{
-    int i = 0;
-    while(chars[i])
-        cs_atoi(chars[i++],chars);
-}
 int check_error(char *str)
 {
     char *clear = str;
@@ -100,12 +57,39 @@ int check_error(char *str)
     }
     return(0);
 }
+char *get_chars(char **av)
+{
+    int i = 0;
+    char *temp;
+    char *clear;
+    temp = NULL;
+    while(av[i])
+    {
+        clear =ft_strdup(av[i]);
+        if(check_error(clear))
+        {
+            free(temp);
+            //ft_putstr_fd("Error\n",2);
+            exit(1);
+        }
+        free(clear);
+        temp = ft_strjoin(temp," ");
+        temp = ft_strjoin(temp,av[i++]);
+    }
+    return(temp);
+}
+void check_overflow(char **chars)
+{
+    int i = 0;
+    while(chars[i])
+        cs_atoi(chars[i++],chars);
+}
 
 void print_stack(t_stack *test)
 {
     while(test)
     {
-        printf("[%d]", test->num);
+        printf("[%d %d]", test->num,test->rank);
         if (test ->next != NULL)
             printf("-->");
         else
@@ -121,7 +105,7 @@ void leak(void)
 
 int main(int ac, char **av)
 {
-    atexit(leak);
+   // atexit(leak);
     char *str;
     char **nums;
     t_stack *a;
@@ -154,7 +138,7 @@ int main(int ac, char **av)
     else if (stack_size == 5)
         sort_five(&a, &b);
     else
-        sort(&a, &b);
+        sort_chankitos(&a, &b);
     clear_stack(a);
    }
 
