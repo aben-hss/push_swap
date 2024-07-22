@@ -53,8 +53,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (s2 == NULL )
 		return (NULL);
-	if(!s1)
-		return(ft_strdup(s2));
+	if (!s1)
+		return (ft_strdup(s2));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	new_str = (char *)ft_calloc(s1_len + s2_len + 1, sizeof(char));

@@ -4,20 +4,27 @@
 void push_to_b(t_stack **a, t_stack **b)
 {
     int i = 0;
-    int j = get_stack_size(*a) / 7;
-
+    int j ;
+    int size = get_stack_size(*a);
+    if(size <= 100)
+        j = size/ 7;
+    else
+        j = size / 15;
     while(*a)
         {
             if((*a)-> rank <= i)
+            {
                 push_it(b,a,'b');
+                i++;
+            }
             else if((*a) -> rank <= i + j)
             {
                 push_it(b,a,'b');
                 rotate_it(b,'b');
+                i++;
             }
             else
                 rotate_it(a,'a');
-            i++;
         }
 
 }

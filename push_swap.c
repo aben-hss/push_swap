@@ -62,17 +62,19 @@ char *get_chars(char **av)
     int i = 0;
     char *temp;
     char *clear;
+    int j = 0;
     temp = NULL;
     while(av[i])
     {
-        clear =ft_strdup(av[i]);
-        if(check_error(clear))
+        clear =av[i];
+        while(clear[j] == ' ')
+            j++;
+        if(!clear[j])
         {
             free(temp);
-            //ft_putstr_fd("Error\n",2);
+            write(1,"Error\n",6);
             exit(1);
         }
-        free(clear);
         temp = ft_strjoin(temp," ");
         temp = ft_strjoin(temp,av[i++]);
     }
@@ -105,7 +107,7 @@ void leak(void)
 
 int main(int ac, char **av)
 {
-   // atexit(leak);
+   atexit(leak);
     char *str;
     char **nums;
     t_stack *a;
@@ -139,21 +141,8 @@ int main(int ac, char **av)
         sort_five(&a, &b);
     else
         sort_chankitos(&a, &b);
-    clear_stack(a);
    }
-
-    // printf("stack_a:\n");
-    // print_stack(a);
-    // push_it(&a, &b, 'a');
-    // push_it(&b, &a, 'b');
-    // push_it(&a, &b, 'a');
-    // // rotate_it(&a,'a');
-    // // rev_rot_it(&a,'a');
-    // printf("stack_a after:\n");
-    // print_stack(a);
-    // printf("stack_b\n");
-    // print_stack(b);
-    // exit(0);
+    clear_stack(a);
 }
 
 

@@ -35,7 +35,7 @@ void	dealloc(char **s)
 {
 	size_t	i;
 
-	if(!s)
+	if (!s)
 		return ;
 	i = 0;
 	while (s[i])
@@ -83,14 +83,10 @@ char	**ft_split(char const *s, char c)
 	{
 		ret[n] = alloc(s, c, &i);
 		if (!ret[n])
-		{
-			dealloc(ret);
-			free((char*)s);
-			return (NULL);
-		}
+			return (dealloc(ret), free((char *)s), NULL);
 		n++;
 	}
 	ret[n] = NULL;
-	free((char*)s);
+	free((char *)s);
 	return (ret);
 }
