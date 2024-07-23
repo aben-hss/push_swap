@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	cs_atoi(char *str, char **free_it)
+int cs_atoi(char *str, char **free_it)
 {
 	unsigned long	ret;
 	int				sign;
@@ -17,12 +17,12 @@ int	cs_atoi(char *str, char **free_it)
 	}
 	while (ft_isdigit(*str))
 	{
-		ret = ret * 10 + * str - '0';
+		ret = ret * 10 + (*str) - '0';
 		str++;
-        if(ret > 2147483647 && sign == 1)
-            return(dealloc(free_it),ft_putstr_fd("Error\n",2),exit(1),0);
-        if(ret > 2147483648 && sign == -1)
-            return(dealloc(free_it),ft_putstr_fd("Error\n",2),exit(1),0);
+        if (ret > 2147483647 && sign == 1)
+            return (dealloc(free_it), ft_putstr_fd("Error\n", 2), exit(1), 0);
+        if (ret > 2147483648 && sign == -1)
+            return(dealloc(free_it), ft_putstr_fd("Error\n", 2), exit(1), 0);
 	}
 	return ((int)ret * sign);
 }
@@ -80,6 +80,7 @@ char *get_chars(char **av)
     }
     return(temp);
 }
+
 void check_overflow(char **chars)
 {
     int i = 0;
@@ -87,27 +88,8 @@ void check_overflow(char **chars)
         cs_atoi(chars[i++],chars);
 }
 
-void print_stack(t_stack *test)
-{
-    while(test)
-    {
-        printf("[%d %d]", test->num,test->rank);
-        if (test ->next != NULL)
-            printf("-->");
-        else
-            printf("\n");
-        test = test -> next;
-    }
-}
-
-void leak(void)
-{
-    system("leaks push_swap");
-}
-
 int main(int ac, char **av)
 {
-   atexit(leak);
     char *str;
     char **nums;
     t_stack *a;
@@ -129,8 +111,6 @@ int main(int ac, char **av)
    {
     stack_size = get_stack_size(a);
     rank_nodes(a);
-    // printf("stack_a before:\n");
-    // print_stack(a);
     if (stack_size == 2)
         swap_it(&a, 'a');
     else if (stack_size == 3)
@@ -140,7 +120,7 @@ int main(int ac, char **av)
     else if (stack_size == 5)
         sort_five(&a, &b);
     else
-        sort_chankitos(&a, &b);
+        sort_all(&a, &b);
    }
     clear_stack(a);
 }
