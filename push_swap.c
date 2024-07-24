@@ -118,7 +118,7 @@ int	main(int ac, char **av)
 		if (stack_size == 2)
 			swap_it(&a, 'a');
 		else if (stack_size == 3)
-			sort_three(&a, &b);
+			sort_three(&a);
 		else if (stack_size == 4)
 			sort_four(&a, &b);
 		else if (stack_size == 5)

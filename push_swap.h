@@ -24,7 +24,7 @@ void	swap_it(t_stack **stack, char c);
 void	push_it(t_stack **stack_dest, t_stack **stack_src, char c);
 void	rotate_it(t_stack **stack, char c);
 void	rev_rot_it(t_stack **stack, char c);
-void	sort_three(t_stack **a, t_stack **b);
+void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
 void	sort_all(t_stack **a, t_stack **b);

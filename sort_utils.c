@@ -22,7 +22,7 @@ void	rank_nodes(t_stack *stack)
 	}
 }
 
-void	sort_three(t_stack **a, t_stack **b)
+void	sort_three(t_stack **a)
 {
 	int	first;
 	int	sec_small;
@@ -69,7 +69,7 @@ void	sort_four(t_stack **a, t_stack **b)
 			rev_rot_it(a, 'a');
 	}
 	push_it(b, a, 'b');
-	sort_three(a, b);
+	sort_three(a);
 	push_it(a, b, 'a');
 }
 
@@ -110,7 +110,7 @@ void	sort_five(t_stack **a, t_stack **b)
 		current = current->next;
 	}
 	push_small_two(a, b, small, sec_small);
-	sort_three(a, b);
+	sort_three(a);
 	push_it(a, b, 'a');
 	push_it(a, b, 'a');
 	if ((*a)->rank == 1)
