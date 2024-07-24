@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_stucks_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 07:13:01 by aben-hss          #+#    #+#             */
+/*   Updated: 2024/07/24 07:33:51 by aben-hss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*new_node(int num)
@@ -41,22 +53,6 @@ size_t	get_stack_size(t_stack *stack)
 	return (size);
 }
 
-t_stack	*store_nums(char **nums)
-{
-	t_stack	*head;
-	char	**clear;
-
-	clear = nums;
-	head = NULL;
-	while (*nums)
-	{
-		add_to_stack(&head, new_node(cs_atoi(*nums, NULL)));
-		nums++;
-	}
-	dealloc(clear);
-	return (head);
-}
-
 void	clear_stack(t_stack *stack)
 {
 	t_stack	*clear;
@@ -67,35 +63,4 @@ void	clear_stack(t_stack *stack)
 		stack = stack->next;
 		free(clear);
 	}
-}
-
-int	check_dubs(t_stack *a)
-{
-	t_stack	*temp;
-	int		temp_int;
-
-	while (a)
-	{
-		temp_int = a->num;
-		temp = a->next;
-		while (temp)
-		{
-			if (temp_int == temp->num)
-				return (1);
-			temp = temp->next;
-		}
-		a = a->next;
-	}
-	return (0);
-}
-
-int	check_storted(t_stack *stack)
-{
-	while (stack)
-	{
-		if (stack->next && stack->num > stack->next->num)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
 }

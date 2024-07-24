@@ -4,6 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 
 SRC = push_swap.c \
+	  parse.c \
       rules.c \
       sort_utils.c \
       sort.c \

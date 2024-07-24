@@ -1,31 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 07:11:22 by aben-hss          #+#    #+#             */
+/*   Updated: 2024/07/24 07:38:32 by aben-hss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-int	cs_atoi(char *str, char **free_it)
-{
-	unsigned long	ret;
-	int				sign;
-
-	ret = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (ft_isdigit(*str))
-	{
-		ret = ret * 10 + (*str) - '0';
-		str++;
-		if (ret > 2147483647 && sign == 1)
-			return (dealloc(free_it), ft_putstr_fd("Error\n", 2), exit(1), 0);
-		if (ret > 2147483648 && sign == -1)
-			return (dealloc(free_it), ft_putstr_fd("Error\n", 2), exit(1), 0);
-	}
-	return ((int)ret * sign);
-}
 
 int	check_error(char *str)
 {
@@ -35,22 +20,14 @@ int	check_error(char *str)
 	while (*str == ' ')
 		str++;
 	if (!*str)
-	{
-		free(clear);
-		ft_putstr_fd("Error\n", 2);
-		return (1);
-	}
+		return (free(clear), ft_putstr_fd("Error\n", 2), 1);
 	while (*str)
 	{
 		if (!(ft_isdigit(*str) || ft_strchr("+- ", *str)))
 			return (free(clear), ft_putstr_fd("Error\n", 2), 1);
 		if (ft_strchr("+-", *str) && (!ft_isdigit(*(str + 1))
 				|| *(str - 1) != ' '))
-		{
-			free(clear);
-			ft_putstr_fd("Error\n", 2);
-			return (1);
-		}
+			return (free(clear), ft_putstr_fd("Error\n", 2), 1);
 		str++;
 	}
 	return (0);
@@ -83,48 +60,95 @@ char	*get_chars(char **av)
 	return (temp);
 }
 
-void	check_overflow(char **chars)
-{
-	int	i;
-
-	i = 0;
-	while (chars[i])
-		cs_atoi(chars[i++], chars);
-}
-
-int	main(int ac, char **av)
+int	initialize_stacks(char **av, t_stack **a, t_stack **b)
 {
 	char	*str;
 	char	**nums;
-	t_stack	*a;
-	t_stack	*b;
-	size_t	stack_size;
 
-	b = NULL;
 	str = get_chars(av + 1);
-	if (ac <= 1)
-		return (0);
 	if (check_error(str))
 		return (1);
 	nums = ft_split(str, ' ');
 	check_overflow(nums);
-	a = store_nums(nums);
-	if (check_dubs(a))
-		return (clear_stack(a), write(1, "Error\n", 6));
-	if (!check_storted(a))
+	*a = store_nums(nums);
+	if (check_dubs(*a))
+	{
+		clear_stack(*a);
+		write(1, "Error\n", 6);
+		return (1);
+	}
+	*b = NULL;
+	return (0);
+}
+
+void	sort_stack(t_stack **a, t_stack **b, size_t stack_size)
+{
+	if (stack_size == 2)
+		swap_it(a, 'a');
+	else if (stack_size == 3)
+		sort_three(a);
+	else if (stack_size == 4)
+		sort_four(a, b);
+	else if (stack_size == 5)
+		sort_five(a, b);
+	else
+		sort_all(a, b);
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*a;
+	t_stack	*b;
+	size_t	stack_size;
+
+	a = NULL;
+	b = NULL;
+	if (ac <= 1)
+		return (0);
+	if (initialize_stacks(av, &a, &b) != 0)
+		return (1);
+	if (!check_sorted(a))
 	{
 		stack_size = get_stack_size(a);
 		rank_nodes(a);
-		if (stack_size == 2)
-			swap_it(&a, 'a');
-		else if (stack_size == 3)
-			sort_three(&a);
-		else if (stack_size == 4)
-			sort_four(&a, &b);
-		else if (stack_size == 5)
-			sort_five(&a, &b);
-		else
-			sort_all(&a, &b);
+		sort_stack(&a, &b, stack_size);
 	}
 	clear_stack(a);
+	return (0);
 }
+// int	main(int ac, char **av)
+// {
+// 	char	*str;
+// 	char	**nums;
+// 	t_stack	*a;
+// 	t_stack	*b;
+// 	size_t	stack_size;
+
+// 	b = NULL;
+// 	str = get_chars(av + 1);
+// 	if (ac <= 1)
+// 		return (0);
+// 	if (check_error(str))
+// 		return (1);
+// 	nums = ft_split(str, ' ');
+// 	check_overflow(nums);
+// 	a = store_nums(nums);
+// 	if (check_dubs(a))
+// 		return (clear_stack(a), write(1, "Error\n", 6));
+// 	if (!check_storted(a))
+// 	{
+// 		stack_size = get_stack_size(a);
+// 		rank_nodes(a);
+// 		if (stack_size == 2)
+// 			swap_it(&a, 'a');
+// 		else if (stack_size == 3)
+// 			sort_three(&a);
+// 		else if (stack_size == 4)
+// 			sort_four(&a, &b);
+// 		else if (stack_size == 5)
+// 			sort_five(&a, &b);
+// 		else
+// 			sort_all(&a, &b);
+// 	}
+// 	clear_stack(a);
+// }

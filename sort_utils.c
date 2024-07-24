@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 07:12:39 by aben-hss          #+#    #+#             */
+/*   Updated: 2024/07/24 07:12:41 by aben-hss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rank_nodes(t_stack *stack)
@@ -116,41 +128,3 @@ void	sort_five(t_stack **a, t_stack **b)
 	if ((*a)->rank == 1)
 		swap_it(a, 'a');
 }
-
-// void	sort_five(t_stack **a, t_stack **b)
-// {
-// 	t_stack	*current;
-// 	int		small;
-// 	int		sec_small;
-// 	int		i;
-
-// 	current = *a;
-// 	while (current)
-// 	{
-// 		if (current->rank == 0)
-// 			small = current->num;
-// 		if (current->rank == 1)
-// 			sec_small = current->num;
-// 		current = current->next;
-// 	}
-// 	i = 0;
-// 	while (i < 2)
-// 	{
-// 		while ((*a)->num != small && (*a)->num != sec_small)
-// 		{
-// 			if ((*a)->next->num == small || (*a)->next->num == sec_small
-// 				|| (*a)->next->next->num == small
-// 				|| (*a)->next->next->num == sec_small)
-// 				rotate_it(a, 'a');
-// 			else
-// 				rev_rot_it(a, 'a');
-// 		}
-// 		push_it(b, a, 'b');
-// 		i++;
-// 	}
-// 	sort_three(a, b);
-// 	push_it(a, b, 'a');
-// 	push_it(a, b, 'a');
-// 	if ((*a)->rank == 1)
-// 		swap_it(a, 'a');
-// }
