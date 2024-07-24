@@ -1,14 +1,35 @@
 NAME = push_swap
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+LIBFT = libft/libft.a
 
-CFLAGS = cc -Wall -Wextra -Werror
+SRC = push_swap.c \
+      rules.c \
+      sort_utils.c \
+      sort.c \
+      t_stucks_utils.c
 
-RM = rm -rf
+OBJ = $(SRC:.c=.o)
 
-# OBJECT = 
+all: $(NAME)
 
-all :
-	make -C ./libft 
-	cc rules.c push_swap.c sort.c t_stucks_utils.c sort_utils.c ./libft/libft.a -o $(NAME)
-re :
-	make -C libft re
-	make all
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT):
+	make -C libft
+
+clean:
+	rm -f $(OBJ)
+	make -C libft clean
+
+fclean: clean
+	rm -f $(NAME)
+	make -C libft fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re
