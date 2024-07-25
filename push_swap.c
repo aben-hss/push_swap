@@ -6,7 +6,7 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:11:22 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/07/24 09:45:47 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:49:00 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*get_chars(char **av)
 	temp = NULL;
 	while (av[i])
 	{
+		j = 0;
 		clear = av[i];
 		while (clear[j] == ' ')
 			j++;
