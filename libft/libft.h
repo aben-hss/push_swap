@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aben-hss <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 05:15:59 by aben-hss          #+#    #+#             */
-/*   Updated: 2023/11/27 05:16:01 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/07/25 04:10:21 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-//#define malloc(x) NULL
+
 typedef struct s_list
 {
 	void			*content;

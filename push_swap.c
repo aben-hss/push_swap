@@ -6,7 +6,7 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:11:22 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/07/24 07:38:32 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/07/24 09:45:47 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_chars(char **av)
 		if (!clear[j])
 		{
 			free(temp);
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 		temp = ft_strjoin(temp, " ");
@@ -74,7 +74,7 @@ int	initialize_stacks(char **av, t_stack **a, t_stack **b)
 	if (check_dubs(*a))
 	{
 		clear_stack(*a);
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	*b = NULL;
@@ -116,39 +116,3 @@ int	main(int ac, char **av)
 	clear_stack(a);
 	return (0);
 }
-// int	main(int ac, char **av)
-// {
-// 	char	*str;
-// 	char	**nums;
-// 	t_stack	*a;
-// 	t_stack	*b;
-// 	size_t	stack_size;
-
-// 	b = NULL;
-// 	str = get_chars(av + 1);
-// 	if (ac <= 1)
-// 		return (0);
-// 	if (check_error(str))
-// 		return (1);
-// 	nums = ft_split(str, ' ');
-// 	check_overflow(nums);
-// 	a = store_nums(nums);
-// 	if (check_dubs(a))
-// 		return (clear_stack(a), write(1, "Error\n", 6));
-// 	if (!check_storted(a))
-// 	{
-// 		stack_size = get_stack_size(a);
-// 		rank_nodes(a);
-// 		if (stack_size == 2)
-// 			swap_it(&a, 'a');
-// 		else if (stack_size == 3)
-// 			sort_three(&a);
-// 		else if (stack_size == 4)
-// 			sort_four(&a, &b);
-// 		else if (stack_size == 5)
-// 			sort_five(&a, &b);
-// 		else
-// 			sort_all(&a, &b);
-// 	}
-// 	clear_stack(a);
-// }
