@@ -6,15 +6,15 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:12:11 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/07/24 07:40:13 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/07/26 08:09:30 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <libc.h>
 # include "./libft/libft.h"
+# include <ctype.h>
 # include <unistd.h>
 # include <stdlib.h>
 
