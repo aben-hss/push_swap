@@ -6,12 +6,20 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:12:26 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/07/24 07:12:28 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:21:25 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Swap the first two elements at the top of a stack
+ *
+ * This function swaps the top two elements of the given stack.
+ * It also prints the corresponding operation ('sa' or 'sb') to stdout.
+ *
+ * @param stack: Pointer to the stack to perform the swap operation on
+ * @param c: Character indicating which stack is being operated on ('a' or 'b')
+ */
 void	swap_it(t_stack **stack, char c)
 {
 	t_stack	*temp_two;
@@ -31,6 +39,15 @@ void	swap_it(t_stack **stack, char c)
 	}
 }
 
+/* Push the top element from one stack to another
+ *
+ * This function moves the top element of the source stack to the top of the destination stack.
+ * It also prints the corresponding operation ('pa' or 'pb') to stdout.
+ *
+ * @param stack_dest: Pointer to the destination stack
+ * @param stack_src: Pointer to the source stack
+ * @param c: Character indicating which stack is receiving the push ('a' or 'b')
+ */
 void	push_it(t_stack **stack_dest, t_stack **stack_src, char c)
 {
 	t_stack	*temp;
@@ -47,6 +64,14 @@ void	push_it(t_stack **stack_dest, t_stack **stack_src, char c)
 	*stack_dest = temp;
 }
 
+/* Rotate a stack (shift up all elements by 1)
+ *
+ * This function moves the first element of the stack to the bottom.
+ * It also prints the corresponding operation ('ra' or 'rb') to stdout.
+ *
+ * @param stack: Pointer to the stack to perform the rotate operation on
+ * @param c: Character indicating which stack is being operated on ('a' or 'b')
+ */
 void	rotate_it(t_stack **stack, char c)
 {
 	t_stack	*temp;
@@ -68,6 +93,14 @@ void	rotate_it(t_stack **stack, char c)
 	}
 }
 
+/* Reverse rotate a stack (shift down all elements by 1)
+ *
+ * This function moves the last element of the stack to the top.
+ * It also prints the corresponding operation ('rra' or 'rrb') to stdout.
+ *
+ * @param stack: Pointer to the stack to perform the reverse rotate operation on
+ * @param c: Character indicating which stack is being operated on ('a' or 'b')
+ */
 void	rev_rot_it(t_stack **stack, char c)
 {
 	t_stack	*temp;

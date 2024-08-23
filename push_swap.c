@@ -6,12 +6,13 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:11:22 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/07/28 03:46:13 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:17:15 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Check if the input string contains only valid characters for integer input */
 int	check_error(char *str)
 {
 	char	*clear;
@@ -33,6 +34,7 @@ int	check_error(char *str)
 	return (0);
 }
 
+/* Concatenate all command-line arguments into a single string */
 char	*get_chars(char **av)
 {
 	int		i;
@@ -60,6 +62,7 @@ char	*get_chars(char **av)
 	return (temp);
 }
 
+/* Initialize stacks A and B from command-line arguments */
 int	initialize_stacks(char **av, t_stack **a, t_stack **b)
 {
 	char	*str;
@@ -81,6 +84,7 @@ int	initialize_stacks(char **av, t_stack **a, t_stack **b)
 	return (0);
 }
 
+/* Choose and execute the appropriate sorting algorithm based on stack size */
 void	sort_stack(t_stack **a, t_stack **b, size_t stack_size)
 {
 	if (stack_size == 2)

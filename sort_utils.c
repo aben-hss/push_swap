@@ -6,12 +6,19 @@
 /*   By: aben-hss <aben-hss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:12:39 by aben-hss          #+#    #+#             */
-/*   Updated: 2024/07/24 07:12:41 by aben-hss         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:23:21 by aben-hss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Assign ranks to nodes based on their relative values
+ *
+ * This function iterates through the stack and assigns a rank to each node.
+ * The rank represents how many nodes have a smaller value than the current node.
+ *
+ * @param stack: Pointer to the head of the stack
+ */
 void	rank_nodes(t_stack *stack)
 {
 	int		rank;
@@ -34,6 +41,13 @@ void	rank_nodes(t_stack *stack)
 	}
 }
 
+/* Sort a stack of three elements
+ *
+ * This function sorts a stack of exactly three elements using the minimum
+ * number of operations. It covers all possible permutations of three elements.
+ *
+ * @param a: Pointer to the stack to be sorted
+ */
 void	sort_three(t_stack **a)
 {
 	int	first;
@@ -61,6 +75,15 @@ void	sort_three(t_stack **a)
 		rev_rot_it(a, 'a');
 }
 
+/* Sort a stack of four elements
+ *
+ * This function sorts a stack of exactly four elements. It finds the smallest
+ * element, moves it to the top, pushes it to stack B, sorts the remaining three
+ * elements, and then pushes the smallest element back to stack A.
+ *
+ * @param a: Pointer to stack A
+ * @param b: Pointer to stack B
+ */
 void	sort_four(t_stack **a, t_stack **b)
 {
 	t_stack	*current;
@@ -85,6 +108,15 @@ void	sort_four(t_stack **a, t_stack **b)
 	push_it(a, b, 'a');
 }
 
+/* Helper function to push the two smallest elements to stack B
+ *
+ * This function finds and pushes the two smallest elements from stack A to stack B.
+ *
+ * @param a: Pointer to stack A
+ * @param b: Pointer to stack B
+ * @param small: The value of the smallest element
+ * @param sec_small: The value of the second smallest element
+ */
 void	push_small_two(t_stack **a, t_stack **b, int small, int sec_small)
 {
 	int	i;
@@ -106,6 +138,15 @@ void	push_small_two(t_stack **a, t_stack **b, int small, int sec_small)
 	}
 }
 
+/* Sort a stack of five elements
+ *
+ * This function sorts a stack of exactly five elements. It pushes the two smallest
+ * elements to stack B, sorts the remaining three elements in stack A, and then
+ * pushes the two smallest elements back to stack A in the correct order.
+ *
+ * @param a: Pointer to stack A
+ * @param b: Pointer to stack B
+ */
 void	sort_five(t_stack **a, t_stack **b)
 {
 	t_stack	*current;
